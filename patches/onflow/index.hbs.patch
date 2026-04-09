@@ -1,0 +1,14 @@
+===================================================================
+--- index.hbs
++++ index.hbs
+@@ -13,9 +13,9 @@
+ {{else}}
+
+ 	{{!-- Latest posts. --}}
+ 	{{#if @custom.latest_posts_count}}
+-		{{#get "posts" include="tags,tiers" limit=@custom.latest_posts_count filter="tag:-hash-project"}}
++		{{#get "posts" include="tags,tiers" limit=@custom.latest_posts_count filter="tag:-[hash-project,hash-hide]"}}
+ 			{{> "section/posts" show_button=true}}
+ 		{{/get}}
+ 	{{/if}}
+ {{/if}}

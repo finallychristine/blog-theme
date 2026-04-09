@@ -1,0 +1,8 @@
+.kg-code-card {
+  max-width: var(--container-wide--width)
+}
+
+.kg-code-card code {
+  tab-size: 5.3;
+}
+

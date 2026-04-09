@@ -1,0 +1,7 @@
+/themes/*
+!/themes/.gitkeep
+.pnp.cjs
+.pnp.loader.mjs
+.yarn
+.idea
+dist
