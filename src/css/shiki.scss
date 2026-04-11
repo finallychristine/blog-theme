@@ -1,0 +1,78 @@
+
+.shiki {
+  // provided by theme
+  border: 1px solid var(--color-border);
+
+  .language-badge {
+    color:var(--color-contrast);
+    font-size:var(--font-x-small);
+    opacity:.5;
+    position:absolute;
+    right:.5rem;
+    top:1.0rem;
+    transition:opacity .15s ease;
+    z-index:1
+  }
+
+  .copy-button {
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    border-radius: .25rem;
+    color: var(--color-contrast);
+    display: flex;
+    height: 1.5rem;
+    justify-content: center;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: .5rem;
+    top: 1rem;
+    transition: opacity .15s ease,color .15s ease,background-color .15s ease;
+    width: 1.5rem;
+    word-break: normal;
+    z-index: 2;
+
+    &:hover {
+      background-color:hsla(0,0%,50%,.2);
+    }
+  }
+
+  &.has-line-numbers {
+    counter-reset: code-counter;
+
+    .line {
+      counter-increment: code-counter;
+
+      &::before {
+        color: currentcolor;
+        content: counter(code-counter);
+        display: inline-block;
+        margin-right: .75rem;
+        min-width: 1rem;
+        opacity: .5;
+        text-align: right;
+      }
+    }
+  }
+
+  // Hide the language badge on hover
+  > .copy-button:focus-visible ~ ,
+  > .copy-button:hover ~ ,
+  &:hover  {
+    .language-badge {
+      opacity: 0;
+    }
+    .copy-button {
+      opacity: 1;
+    }
+  }
+
+  //> .copy-button:focus-visible,
+  //> .copy-button:hover {
+  //  opacity: 1;
+  //}
+  //&:hover ~ .copy-button {
+  //  opacity: 1;
+  //}
+}

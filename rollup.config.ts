@@ -3,8 +3,15 @@ import copy from 'rollup-plugin-copy';
 import {applyPatch} from 'diff';
 import {readFileSync} from "fs";
 import typescript from '@rollup/plugin-typescript';
-import postcss from 'rollup-plugin-postcss';
 import terser from '@rollup/plugin-terser';
+import { NodePackageImporter } from 'sass';
+import sassRollupPlugin from 'rollup-plugin-sass';
+import resolve from '@rollup/plugin-node-resolve'
+// @ts-ignore — no type declarations available
+import serve from 'rollup-plugin-serve'
+import livereload from 'rollup-plugin-livereload'
+
+const isDev = process.env.ROLLUP_WATCH === 'true';
 
 // prefer patch files in case the theme vendor releases an update
 function applyPatches(patchfile: Buffer, filename: string): any {
@@ -21,11 +28,24 @@ function renamePatch(name: string, extension: string, fullPath: string): string 
 export default defineConfig([
     // javascript
     {
-      input: 'src/js/index.ts',
-      output: { file: 'dist/custom.js', sourcemap: true },
+      input: 'src/js/custom.ts',
+      output: {
+        dir: 'dist',
+        sourcemap: true,
+        chunkFileNames: 'chunks/[name]-[hash].js',
+      },
       plugins: [
+        resolve(),
         typescript({ tsconfig: 'tsconfig.json' }),
-        terser(),
+        // terser(), // uncomment for prod
+        ...(isDev ? [
+          serve({
+            contentBase: ['dist', 'test'],
+            port: 3000,
+            open: false,
+          }),
+          livereload({ watch: 'src' }),
+        ] : []),
         copy({
           targets: [
             // Copy pre-built stuff in the theme package, no need to re-build
@@ -43,11 +63,21 @@ export default defineConfig([
       })
     ]
   },
+
+  // css
   {
-    input: "src/css/index.css",
-    output: { file: 'dist/custom.css', sourcemap: true },
+    input: "src/css/index.scss",
+    output: { file: 'dist/custom' },
     plugins: [
-      postcss({ extract: true, minimize: true }),
+      livereload({ watch: 'src' }),
+      sassRollupPlugin({
+        api: 'modern',
+        output: true,
+        options: {
+          sourceMapIncludeSources: true,
+          importers: [new NodePackageImporter()],
+        }
+      }),
     ]
   }
 ]);
