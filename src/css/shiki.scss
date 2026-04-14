@@ -1,15 +1,15 @@
 
 .shiki {
-  // provided by theme
-  border: 1px solid var(--color-border);
+  position:relative;
+  padding: 10px;
+  border-color: #e4e4e7;
 
   .language-badge {
-    color:var(--color-contrast);
     font-size:var(--font-x-small);
     opacity:.5;
     position:absolute;
     right:.5rem;
-    top:1.0rem;
+    top:0.25rem;
     transition:opacity .15s ease;
     z-index:1
   }
@@ -19,7 +19,6 @@
     background-color: transparent;
     border: 0;
     border-radius: .25rem;
-    color: var(--color-contrast);
     display: flex;
     height: 1.5rem;
     justify-content: center;
@@ -27,7 +26,7 @@
     padding: 0;
     position: absolute;
     right: .5rem;
-    top: 1rem;
+    top: 0.25rem;
     transition: opacity .15s ease,color .15s ease,background-color .15s ease;
     width: 1.5rem;
     word-break: normal;

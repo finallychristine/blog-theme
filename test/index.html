@@ -1,18 +1,47 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-font="Bricolage Grotesque">
 <head>
-    <script src="/built/global.js"></script>
-    <link rel="stylesheet" href="/built/style.css">
+    <script src="assets/built/global.js"></script>
+    <script src="assets/built/lightbox.js"></script>
+
+    <link rel="stylesheet" href="assets/built/style.css">
+
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/bricolage.woff2">
+    <style>
+        @font-face {
+            font-family: "Bricolage Grotesque";
+            font-style: normal;
+            font-weight: 400 700;
+            font-stretch: 100%;
+            font-display: swap;
+            src: url("assets/fonts/bricolage.woff2") format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+    </style>
+
+    <!--
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/figtree.woff2">
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/fraunces.woff2">
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/tiktok-sans.woff2">
+    -->
     <title>Demo</title>
 </head>
-<body>
-<pre><code class="language-go">type Foo struct {
-    Id string
+<body class="bg-primary font-body text-text font-weight-body">
+<article class="post">
+    <div class="post-content cancas prose">
+        <h1>Hello World!</h1>
+        <p>This is some text that is going on here hello world!</p>
+        <div class="kg-card kg-code-card">
+            <pre><code class="language-go">type Foo struct {
+  Id string
 }</code></pre>
+        </div>
 
-<p>
-    Font Awesome:
-    <i class="fa-brands fa-draft2digital"></i>
-</p>
+        <p>
+            Font Awesome:
+            <i class="fa-brands fa-draft2digital"></i>
+        </p>
+    </div>
+</article>
 </body>
 </html>

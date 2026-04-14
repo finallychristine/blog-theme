@@ -48,7 +48,7 @@ function loadShikiToCodeBlock(code: Element, pre: Element, highlighter: Highligh
       {
         pre(node: HElement) {
           this.addClassToHast(node, 'has-line-numbers')
-          node.children.push(
+          node.children.unshift(
             // Copy icon
             h('button', {class: 'copy-button', role: 'button', 'aria-label': 'Copy code'}, [
               COPY_ICON,
@@ -60,12 +60,11 @@ function loadShikiToCodeBlock(code: Element, pre: Element, highlighter: Highligh
     ]
   })
 
-  const dom: Document = <Document>toDom(hastRoot)
+  const dom = (<Document>toDom(hastRoot)).children[0]
   pre.replaceWith(dom)
 
   const copyBtn = dom.querySelector('.copy-button')!!
   const icon = copyBtn.querySelector('i')!!
-  console.log(icon)
   copyBtn.addEventListener('click', async () => {
     await navigator.clipboard.writeText(rawCode)
     copyBtn.innerHTML = CHECK_ICON_HTML;

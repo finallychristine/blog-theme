@@ -13,6 +13,7 @@ import livereload from 'rollup-plugin-livereload'
 import postcss from 'rollup-plugin-postcss';
 import postcssImport from 'postcss-import';
 import type { Options as SassOptions } from 'sass';
+import tailwindcss from '@tailwindcss/postcss';
 
 const isWatch = process.env.ROLLUP_WATCH === 'true';
 const isProd  = process.env.BUILD == "production";
@@ -47,7 +48,7 @@ export default defineConfig([
         typescript({ tsconfig: 'tsconfig.json' }),
         ...(isWatch ? [
           serve({
-            contentBase: ['dist', 'test'],
+            contentBase: ['dist/build', 'test'],
             port: 3000,
             open: false,
           }),
@@ -85,7 +86,10 @@ export default defineConfig([
         sourceMap: true,
         extract: true,
         minimize: isProd,
-        plugins: [postcssImport()],
+        plugins: [
+          tailwindcss(),
+          postcssImport()
+        ],
         use: {
           sass: {
             importers: [new NodePackageImporter()],
