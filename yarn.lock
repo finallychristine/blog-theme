@@ -1251,7 +1251,9 @@ __metadata:
     hast-util-to-dom: "npm:^4.0.1"
     hast-util-to-html: "npm:^9.0.5"
     hastscript: "npm:^9.0.1"
+    photoswipe: "npm:^4.1.3"
     postcss: "npm:^8.5.9"
+    postcss-import: "npm:^16.1.1"
     rollup: "npm:^4.60.1"
     rollup-plugin-copy: "npm:^3.5.0"
     rollup-plugin-livereload: "npm:^2.0.5"
@@ -1259,8 +1261,10 @@ __metadata:
     rollup-plugin-sass: "npm:^1.15.3"
     rollup-plugin-serve: "npm:^3.0.0"
     sass: "npm:^1.99.0"
+    tailwindcss: "npm:^4.1.18"
     tslib: "npm:^2.8.1"
     typescript: "npm:^6.0.2"
+    wind: "file:themes/wind"
   languageName: unknown
   linkType: soft
 
@@ -1668,6 +1672,13 @@ __metadata:
   version: 2.2.1
   resolution: "env-paths@npm:2.2.1"
   checksum: 10c0/285325677bf00e30845e330eec32894f5105529db97496ee3f598478e50f008c5352a41a30e5e72ec9de8a542b5a570b85699cd63bd2bc646dbcb9f311d83bc4
+  languageName: node
+  linkType: hard
+
+"es-errors@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "es-errors@npm:1.3.0"
+  checksum: 10c0/0a61325670072f98d8ae3b914edab3559b6caa980f08054a3b872052640d91da01d38df55df797fcc916389d77fc92b8d5906cf028f4db46d7e3003abecbca85
   languageName: node
   linkType: hard
 
@@ -2801,6 +2812,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"photoswipe@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "photoswipe@npm:4.1.3"
+  checksum: 10c0/89d7bcba2b1aefc7b0798a0cba7fd643c6eb30994d1f717f5f822df5ac27a851cf9aa14388129f4332abadabf4998d782e5bfe4af2341ab8dca9a27efd2bc74d
+  languageName: node
+  linkType: hard
+
 "picocolors@npm:^1.0.0, picocolors@npm:^1.1.1":
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
@@ -2819,6 +2837,13 @@ __metadata:
   version: 4.0.4
   resolution: "picomatch@npm:4.0.4"
   checksum: 10c0/e2c6023372cc7b5764719a5ffb9da0f8e781212fa7ca4bd0562db929df8e117460f00dff3cb7509dacfc06b86de924b247f504d0ce1806a37fac4633081466b0
+  languageName: node
+  linkType: hard
+
+"pify@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "pify@npm:2.3.0"
+  checksum: 10c0/551ff8ab830b1052633f59cb8adc9ae8407a436e06b4a9718bcb27dc5844b83d535c3a8512b388b6062af65a98c49bdc0dd523d8b2617b188f7c8fee457158dc
   languageName: node
   linkType: hard
 
@@ -2900,6 +2925,19 @@ __metadata:
   peerDependencies:
     postcss: ^8.2.15
   checksum: 10c0/7d3fc0b0d90599606fc083327a7c24390f90270a94a0119af4b74815d518948581579281f63b9bfa62e2644edf59bc9e725dc04ea5ba213f697804f3fb4dd8dc
+  languageName: node
+  linkType: hard
+
+"postcss-import@npm:^16.1.1":
+  version: 16.1.1
+  resolution: "postcss-import@npm:16.1.1"
+  dependencies:
+    postcss-value-parser: "npm:^4.0.0"
+    read-cache: "npm:^1.0.0"
+    resolve: "npm:^1.1.7"
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 10c0/b91245971564891110cb407c7459bd470893ccbdd3328fdd384ef2be4d0e5f304e5834acbb8b537ad562c001db34bee1c29b55994bead5ab5a53b1edc2a687b9
   languageName: node
   linkType: hard
 
@@ -3234,7 +3272,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
+"postcss-value-parser@npm:^4.0.0, postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
   checksum: 10c0/f4142a4f56565f77c1831168e04e3effd9ffcc5aebaf0f538eee4b2d465adfd4b85a44257bb48418202a63806a7da7fe9f56c330aebb3cac898e46b4cbf49161
@@ -3304,6 +3342,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"read-cache@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "read-cache@npm:1.0.0"
+  dependencies:
+    pify: "npm:^2.3.0"
+  checksum: 10c0/90cb2750213c7dd7c80cb420654344a311fdec12944e81eb912cd82f1bc92aea21885fa6ce442e3336d9fccd663b8a7a19c46d9698e6ca55620848ab932da814
+  languageName: node
+  linkType: hard
+
 "readdirp@npm:^4.0.1":
   version: 4.1.2
   resolution: "readdirp@npm:4.1.2"
@@ -3341,6 +3388,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"resolve@npm:^1.1.7":
+  version: 1.22.12
+  resolution: "resolve@npm:1.22.12"
+  dependencies:
+    es-errors: "npm:^1.3.0"
+    is-core-module: "npm:^2.16.1"
+    path-parse: "npm:^1.0.7"
+    supports-preserve-symlinks-flag: "npm:^1.0.0"
+  bin:
+    resolve: bin/resolve
+  checksum: 10c0/b16dc9b537c02e8c3388f7d3dcff9741d3071625f9a97ac1c885f2b0ca51e78df22328fb6d6ef214dd9101fb7cfc19aa2836fe3410402a94f3f7b8639c7149bf
+  languageName: node
+  linkType: hard
+
 "resolve@npm:^1.19.0, resolve@npm:^1.22.1, resolve@npm:^1.5.0":
   version: 1.22.11
   resolution: "resolve@npm:1.22.11"
@@ -3351,6 +3412,20 @@ __metadata:
   bin:
     resolve: bin/resolve
   checksum: 10c0/f657191507530f2cbecb5815b1ee99b20741ea6ee02a59c57028e9ec4c2c8d7681afcc35febbd554ac0ded459db6f2d8153382c53a2f266cee2575e512674409
+  languageName: node
+  linkType: hard
+
+"resolve@patch:resolve@npm%3A^1.1.7#optional!builtin<compat/resolve>":
+  version: 1.22.12
+  resolution: "resolve@patch:resolve@npm%3A1.22.12#optional!builtin<compat/resolve>::version=1.22.12&hash=c3c19d"
+  dependencies:
+    es-errors: "npm:^1.3.0"
+    is-core-module: "npm:^2.16.1"
+    path-parse: "npm:^1.0.7"
+    supports-preserve-symlinks-flag: "npm:^1.0.0"
+  bin:
+    resolve: bin/resolve
+  checksum: 10c0/fc6519984ae1f894d877c0060ba8b1f5ba3bc0e85a02f74e141929c118c23d74d9735619a9cc2965397387e514884245c65d72a40731dcb6cfc84c7bcdc8321e
   languageName: node
   linkType: hard
 
@@ -3801,6 +3876,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwindcss@npm:^4.1.18":
+  version: 4.2.2
+  resolution: "tailwindcss@npm:4.2.2"
+  checksum: 10c0/6eae8a125c35d504ba6c518d26ec64fba694ff4a9ab9b9cd9883050128e0b7afdf491388c472d9bed2624664c1c7d4a133d19b653151a6b52e6ce6953168a857
+  languageName: node
+  linkType: hard
+
 "tar@npm:^7.5.3, tar@npm:^7.5.4":
   version: 7.5.13
   resolution: "tar@npm:7.5.13"
@@ -4031,6 +4113,13 @@ __metadata:
   bin:
     node-which: bin/which.js
   checksum: 10c0/7e710e54ea36d2d6183bee2f9caa27a3b47b9baf8dee55a199b736fcf85eab3b9df7556fca3d02b50af7f3dfba5ea3a45644189836df06267df457e354da66d5
+  languageName: node
+  linkType: hard
+
+"wind@file:themes/wind::locator=christine-fyi-blog%40workspace%3A.":
+  version: 1.1.0
+  resolution: "wind@file:themes/wind#themes/wind::hash=6c2906&locator=christine-fyi-blog%40workspace%3A."
+  checksum: 10c0/e4217abdf0667440cad0fe54b55e72202e8d59337ba8ea4bd62315ad7eb85b6c4d2c2a1ee8b70e3ec05831ec5b9be4d5daa045b1568bcb0055125eea2c372776
   languageName: node
   linkType: hard
 

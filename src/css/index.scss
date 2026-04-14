@@ -1,4 +1,5 @@
 @use "shiki";
+@import "../../themes/wind/assets/css/tailwind.css";
 
 .kg-code-card {
   max-width: var(--container-wide--width)

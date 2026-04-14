@@ -10,6 +10,9 @@ import resolve from '@rollup/plugin-node-resolve'
 // @ts-ignore — no type declarations available
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
+import postcss from 'rollup-plugin-postcss';
+import postcssImport from 'postcss-import';
+import type { Options as SassOptions } from 'sass';
 
 const isDev = process.env.ROLLUP_WATCH === 'true';
 
@@ -28,17 +31,21 @@ function renamePatch(name: string, extension: string, fullPath: string): string 
 export default defineConfig([
     // javascript
     {
-      input: 'src/js/custom.ts',
+      input: {
+        global: 'src/js/index.ts',
+        single: 'src/js/single.ts',
+        lightbox: 'src/js/lightbox.ts',
+      },
       output: {
-        dir: 'dist',
+        dir: 'dist/assets/built',
         sourcemap: true,
         chunkFileNames: 'chunks/[name]-[hash].js',
       },
       plugins: [
         resolve(),
         typescript({ tsconfig: 'tsconfig.json' }),
-        // terser(), // uncomment for prod
         ...(isDev ? [
+          terser(),
           serve({
             contentBase: ['dist', 'test'],
             port: 3000,
@@ -48,17 +55,14 @@ export default defineConfig([
         ] : []),
         copy({
           targets: [
-            // Copy pre-built stuff in the theme package, no need to re-build
-            { src: 'themes/onflow/assets/built', dest: 'dist' },
-            { src: 'themes/onflow/assets/vendors', dest: 'dist' },
-            { src: 'themes/onflow/locales', dest: 'dist' },
-            { src: 'themes/onflow/partials', dest: 'dist' },
-            { src: 'themes/onflow/*.hbs', dest: 'dist' },
-            { src: 'themes/onflow/routes.yaml', dest: 'dist' },
-            { src: 'patches/onflow/**', dest: 'dist', transform: applyPatches, rename: renamePatch },
+            { src: 'themes/wind/package.json', dest: 'dist' }, // needed so ghost knows about theme configs
+            { src: 'themes/wind/assets/fonts', dest: 'dist/assets' },
+            { src: 'themes/wind/locales', dest: 'dist' },
+            { src: 'themes/wind/partials', dest: 'dist' },
+            { src: 'themes/wind/*.hbs', dest: 'dist' },
 
             // our custom images
-            { src: 'src/img', dest: 'dist' },
+            { src: 'src/img', dest: 'dist/assets' },
           ]
       })
     ]
@@ -66,17 +70,25 @@ export default defineConfig([
 
   // css
   {
-    input: "src/css/index.scss",
-    output: { file: 'dist/custom' },
+    input: {
+      style: "src/css/index.scss",
+    },
+    output: { dir: 'dist/assets/built' },
     plugins: [
       livereload({ watch: 'src' }),
-      sassRollupPlugin({
-        api: 'modern',
-        output: true,
-        options: {
-          sourceMapIncludeSources: true,
-          importers: [new NodePackageImporter()],
-        }
+      postcss({
+        sourceMap: true,
+        extract: true,
+        minimize: isDev,
+        plugins: [postcssImport()],
+        use: {
+          sass: {
+            importers: [new NodePackageImporter()],
+            sourceMap: true,
+          } satisfies SassOptions<'sync'>,
+          stylus: null,
+          less: null,
+        },
       }),
     ]
   }

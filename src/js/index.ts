@@ -1,8 +1,6 @@
 // Dynamic import for speed and our components
-import {loadShiki} from "./shiki";
-
-import('./fontawesome');
-
+import "wind/assets/js/global";
+import('./index/fontawesome');
 
 
 // The "pvs" framework created by the theme authors
@@ -19,9 +17,7 @@ window.pvs?.initTOC();
 window.pvs?.addExternalLinkAttributes();
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const s = await import('./shiki')
-  s.loadShiki() // don't care about awaiting loading shiki
-
+  import('./index/shiki').then(s => s.loadShiki())
 
   // Claude button
   document.querySelectorAll('.ask-claude-btn').forEach(btn => {

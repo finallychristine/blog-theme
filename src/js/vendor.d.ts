@@ -1,3 +1,7 @@
+interface Window {
+  pvs: PVS;
+}
+
 
 interface PVS {
   initTOC(): void;
