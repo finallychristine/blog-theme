@@ -14,7 +14,8 @@ import postcss from 'rollup-plugin-postcss';
 import postcssImport from 'postcss-import';
 import type { Options as SassOptions } from 'sass';
 
-const isDev = process.env.ROLLUP_WATCH === 'true';
+const isWatch = process.env.ROLLUP_WATCH === 'true';
+const isProd  = process.env.BUILD == "production";
 
 // prefer patch files in case the theme vendor releases an update
 function applyPatches(patchfile: Buffer, filename: string): any {
@@ -37,15 +38,14 @@ export default defineConfig([
         lightbox: 'src/js/lightbox.ts',
       },
       output: {
-        dir: 'dist/assets/built',
+        dir: 'dist/build/assets/built',
         sourcemap: true,
         chunkFileNames: 'chunks/[name]-[hash].js',
       },
       plugins: [
         resolve(),
         typescript({ tsconfig: 'tsconfig.json' }),
-        ...(isDev ? [
-          terser(),
+        ...(isWatch ? [
           serve({
             contentBase: ['dist', 'test'],
             port: 3000,
@@ -53,16 +53,19 @@ export default defineConfig([
           }),
           livereload({ watch: 'src' }),
         ] : []),
+        ...(isProd ? [
+          terser(),
+        ] : []),
         copy({
           targets: [
-            { src: 'themes/wind/package.json', dest: 'dist' }, // needed so ghost knows about theme configs
-            { src: 'themes/wind/assets/fonts', dest: 'dist/assets' },
-            { src: 'themes/wind/locales', dest: 'dist' },
-            { src: 'themes/wind/partials', dest: 'dist' },
-            { src: 'themes/wind/*.hbs', dest: 'dist' },
+            { src: 'themes/wind/package.json', dest: 'dist/build' }, // needed so ghost knows about theme configs
+            { src: 'themes/wind/assets/fonts', dest: 'dist/build/assets' },
+            { src: 'themes/wind/locales', dest: 'dist/build' },
+            { src: 'themes/wind/partials', dest: 'dist/build' },
+            { src: 'themes/wind/*.hbs', dest: 'dist/build' },
 
             // our custom images
-            { src: 'src/img', dest: 'dist/assets' },
+            { src: 'src/img', dest: 'dist/build/assets' },
           ]
       })
     ]
@@ -73,13 +76,15 @@ export default defineConfig([
     input: {
       style: "src/css/index.scss",
     },
-    output: { dir: 'dist/assets/built' },
+    output: { dir: 'dist/build/assets/built' },
     plugins: [
-      livereload({ watch: 'src' }),
+      ...(isWatch ? [
+        livereload({ watch: 'src' }),
+      ] : []),
       postcss({
         sourceMap: true,
         extract: true,
-        minimize: isDev,
+        minimize: isProd,
         plugins: [postcssImport()],
         use: {
           sass: {
