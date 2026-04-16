@@ -1,34 +1,42 @@
 
+$shiki-badge-transition-time: 0.15s;
+
 .shiki {
   position:relative;
   padding: 10px;
   border-color: #e4e4e7;
+  tab-size: 5.3;
+
+  .code-badge {
+    font-size: 12px;
+    position: absolute;
+    right: .5rem;
+    top: 0.25rem;
+  }
 
   .language-badge {
-    font-size:var(--font-x-small);
     opacity:.5;
-    position:absolute;
-    right:.5rem;
-    top:0.25rem;
-    transition:opacity .15s ease;
+    transition:opacity $shiki-badge-transition-time ease;
     z-index:1
   }
 
   .copy-button {
+    width: 1.5rem;
+    height: 1.5rem;
+
     align-items: center;
     background-color: transparent;
     border: 0;
     border-radius: .25rem;
     display: flex;
-    height: 1.5rem;
     justify-content: center;
     opacity: 0;
     padding: 0;
-    position: absolute;
-    right: .5rem;
-    top: 0.25rem;
-    transition: opacity .15s ease,color .15s ease,background-color .15s ease;
-    width: 1.5rem;
+
+    transition: opacity $shiki-badge-transition-time ease,
+      color $shiki-badge-transition-time ease,
+      background-color $shiki-badge-transition-time ease;
+
     word-break: normal;
     z-index: 2;
 

@@ -17,6 +17,7 @@ const highlighterPromise = createHighlighterCore({
   langs: [
     import('@shikijs/langs/go'),
     import('@shikijs/langs/kotlin'),
+    import('@shikijs/langs/html'),
   ],
   themes: [
     import('@shikijs/themes/github-light'),
@@ -50,10 +51,10 @@ function loadShikiToCodeBlock(code: Element, pre: Element, highlighter: Highligh
           this.addClassToHast(node, 'has-line-numbers')
           node.children.unshift(
             // Copy icon
-            h('button', {class: 'copy-button', role: 'button', 'aria-label': 'Copy code'}, [
+            h('button', {class: 'code-badge copy-button', role: 'button', 'aria-label': 'Copy code'}, [
               COPY_ICON,
             ]),
-            h('span', {class: 'language-badge'}, [language])
+            h('span', {class: 'code-badge language-badge'}, [language])
           )
         },
       }

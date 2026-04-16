@@ -14,6 +14,7 @@ import postcss from 'rollup-plugin-postcss';
 import postcssImport from 'postcss-import';
 import type { Options as SassOptions } from 'sass';
 import tailwindcss from '@tailwindcss/postcss';
+import postcssUrl from "postcss-url";
 
 const isWatch = process.env.ROLLUP_WATCH === 'true';
 const isProd  = process.env.BUILD == "production";
@@ -30,6 +31,8 @@ function renamePatch(name: string, extension: string, fullPath: string): string 
   return name
 }
 
+const globalThisModules = ["photoswipe.js", "photoswipe-ui-default.js"]
+
 export default defineConfig([
     // javascript
     {
@@ -42,6 +45,12 @@ export default defineConfig([
         dir: 'dist/build/assets/built',
         sourcemap: true,
         chunkFileNames: 'chunks/[name]-[hash].js',
+      },
+      moduleContext: (id) => {
+        const isGlobalThis = globalThisModules.some(m => id.endsWith(m))
+        if (isGlobalThis) {
+          return  'globalThis'
+        }
       },
       plugins: [
         resolve(),
@@ -87,8 +96,8 @@ export default defineConfig([
         extract: true,
         minimize: isProd,
         plugins: [
-          tailwindcss(),
-          postcssImport()
+          postcssImport(),
+          // tailwindcss()
         ],
         use: {
           sass: {

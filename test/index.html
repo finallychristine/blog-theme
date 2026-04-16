@@ -27,21 +27,32 @@
     <title>Demo</title>
 </head>
 <body class="bg-primary font-body text-text font-weight-body">
-<article class="post">
-    <div class="post-content cancas prose">
-        <h1>Hello World!</h1>
-        <p>This is some text that is going on here hello world!</p>
-        <div class="kg-card kg-code-card">
-            <pre><code class="language-go">type Foo struct {
-  Id string
-}</code></pre>
-        </div>
+    <div class="container">
+    <article class="post">
+        <div class="post-content cancas prose">
+            <h1>Hello World!</h1>
+            <p>This is some text that is going on here hello world!</p>
 
-        <p>
-            Font Awesome:
-            <i class="fa-brands fa-draft2digital"></i>
-        </p>
-    </div>
-</article>
+            <h2>Code Block</h2>
+            <div class="kg-card kg-code-card">
+                <pre><code class="language-go">type Foo struct {
+      Id string
+    }</code></pre>
+            </div>
+
+            <h2>Font Awesome</h2>
+            <p><i class="fa-brands fa-draft2digital"></i></p>
+
+            <h2>Ask Claude</h2>
+            <p>
+                <button
+                        class="ask-claude-btn ask-claude-btn--sm"
+                        data-prompt="What are Kotlin coroutines?">
+                    Kotlin coroutines?
+                </button>
+            </p>
+        </div>
+    </article>
+</div>
 </body>
 </html>

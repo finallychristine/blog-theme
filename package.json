@@ -14,9 +14,11 @@
     "@rollup/plugin-typescript": "^12.3.0",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/postcss-import": "^14.0.3",
+    "@types/postcss-url": "^10.0.4",
     "diff": "^8.0.4",
     "postcss": "^8.5.9",
     "postcss-import": "^16.1.1",
+    "postcss-url": "^10.1.3",
     "rollup": "^4.60.1",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-livereload": "^2.0.5",
@@ -28,7 +30,7 @@
     "typescript": "^6.0.2"
   },
   "scripts": {
-    "build": "rollup -c --environment BUILD:production",
+    "build": "./script/build.sh",
     "watch": "rollup -c --watch"
   },
   "dependencies": {

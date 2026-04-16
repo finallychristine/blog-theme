@@ -1,8 +1,3 @@
 @use "shiki";
-@import "../../themes/wind/assets/css/tailwind.css";
-
-
-.kg-code-card code {
-  tab-size: 5.3;
-}
-
+@use "ask-ai";
+@import "../../themes/wind/assets/built/style.css";
