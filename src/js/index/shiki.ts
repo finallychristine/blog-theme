@@ -18,10 +18,10 @@ const highlighterPromise = createHighlighterCore({
     import('@shikijs/langs/go'),
     import('@shikijs/langs/kotlin'),
     import('@shikijs/langs/html'),
+    import('@shikijs/langs/ruby'),
   ],
   themes: [
-    import('@shikijs/themes/github-light'),
-    import('@shikijs/themes/github-dark'),
+    import('@shikijs/themes/dracula-soft'),
   ],
   engine: createOnigurumaEngine(import('@shikijs/engine-oniguruma/wasm-inlined')),
 })
@@ -40,10 +40,9 @@ function loadShikiToCodeBlock(code: Element, pre: Element, highlighter: Highligh
 
   const hastRoot = codeToHast(highlighter, code.textContent, {
     lang: language,
-    // rootStyle: 'has-line-numbers',
     themes: {
-      light: 'github-light',
-      dark: 'github-dark',
+      light: 'dracula-soft',
+      dark: 'dracula-soft',
     },
     transformers: [
       {

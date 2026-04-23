@@ -12,6 +12,7 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@rollup/plugin-url": "^7.0.0",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/postcss-import": "^14.0.3",
     "@types/postcss-url": "^10.0.4",
@@ -47,6 +48,7 @@
     "hastscript": "^9.0.1",
     "photoswipe": "^4.1.3",
     "tailwindcss": "^4.1.18",
+    "typeface-et-book": "^0.0.2",
     "wind": "file:themes/wind"
   }
 }

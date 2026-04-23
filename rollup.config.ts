@@ -2,10 +2,10 @@ import {defineConfig} from 'rollup';
 import copy from 'rollup-plugin-copy';
 import {applyPatch} from 'diff';
 import {readFileSync} from "fs";
+import {createRequire} from 'node:module';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 import { NodePackageImporter } from 'sass';
-import sassRollupPlugin from 'rollup-plugin-sass';
 import resolve from '@rollup/plugin-node-resolve'
 // @ts-ignore — no type declarations available
 import serve from 'rollup-plugin-serve'
@@ -13,8 +13,6 @@ import livereload from 'rollup-plugin-livereload'
 import postcss from 'rollup-plugin-postcss';
 import postcssImport from 'postcss-import';
 import type { Options as SassOptions } from 'sass';
-import tailwindcss from '@tailwindcss/postcss';
-import postcssUrl from "postcss-url";
 
 const isWatch = process.env.ROLLUP_WATCH === 'true';
 const isProd  = process.env.BUILD == "production";
